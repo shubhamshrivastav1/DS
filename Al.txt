@@ -1,0 +1,2440 @@
+#Buble sort
+
+import java.util.Scanner;
+
+public class BubbleSort {
+    // Bubble Sort Method
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        // Traverse through all array elements
+        for (int i = 0; i < n - 1; i++) {
+            // Last i elements are already sorted
+            for (int j = 0; j < n - i - 1; j++) {
+                // Swap if the element found is greater than the next element
+                if (arr[j] > arr[j + 1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Method to print the array
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Input array size
+        System.out.print("Enter the size of the array: ");
+        int n = scanner.nextInt();
+
+        // Input array elements
+        int[] arr = new int[n];
+        System.out.println("Enter the array elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // Display the original array
+        System.out.println("Original Array: ");
+        printArray(arr);
+
+        // Perform Bubble Sort
+        bubbleSort(arr);
+
+        // Display the sorted array
+        System.out.println("Sorted Array: ");
+        printArray(arr);
+    }
+}
+
+#insertion sort
+
+import java.util.Scanner;
+
+public class InsertionSort {
+    // Insertion Sort Method
+    public static void insertionSort(int[] arr) {
+        int n = arr.length;
+        // Traverse through 1 to n
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            
+            // Move elements of arr[0..i-1] that are greater than key
+            // to one position ahead of their current position
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key; // Insert the key at the correct position
+        }
+    }
+
+    // Method to print the array
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Input array size
+        System.out.print("Enter the size of the array: ");
+        int n = scanner.nextInt();
+
+        // Input array elements
+        int[] arr = new int[n];
+        System.out.println("Enter the array elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // Display the original array
+        System.out.println("Original Array: ");
+        printArray(arr);
+
+        // Perform Insertion Sort
+        insertionSort(arr);
+
+        // Display the sorted array
+        System.out.println("Sorted Array: ");
+        printArray(arr);
+    }
+}
+
+# Selection Sort 
+import java.util.Scanner;
+
+public class SelectionSort {
+    // Selection Sort Method
+    public static void selectionSort(int[] arr) {
+        int n = arr.length;
+        
+        // Traverse through all elements of the array
+        for (int i = 0; i < n - 1; i++) {
+            // Find the minimum element in the unsorted part of the array
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            
+            // Swap the found minimum element with the first element
+            int temp = arr[minIndex];
+            arr[minIndex] = arr[i];
+            arr[i] = temp;
+        }
+    }
+
+    // Method to print the array
+    public static void printArray(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // Input array size
+        System.out.print("Enter the size of the array: ");
+        int n = scanner.nextInt();
+
+        // Input array elements
+        int[] arr = new int[n];
+        System.out.println("Enter the array elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // Display the original array
+        System.out.println("Original Array: ");
+        printArray(arr);
+
+        // Perform Selection Sort
+        selectionSort(arr);
+
+        // Display the sorted array
+        System.out.println("Sorted Array: ");
+        printArray(arr);
+    }
+}
+
+
+#Linear Search
+
+public class LinearSearch {
+    public static int linearSearch(int[] array, int target) {
+        // Traverse the array
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == target) { // Check if the element matches the target
+                return i; // Return the index if found
+            }
+        }
+        return -1; // Return -1 if not found
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50};
+        int target = 30;
+
+        int result = linearSearch(numbers, target);
+
+        if (result != -1) {
+            System.out.println("Element found at index: " + result);
+        } else {
+            System.out.println("Element not found in the array.");
+        }
+    }
+}
+
+
+#Binary Search
+
+public class BinarySearch {
+    public static int binarySearch(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2; // Calculate the middle index
+
+            if (array[mid] == target) {
+                return mid; // Target found
+            } else if (array[mid] < target) {
+                left = mid + 1; // Search in the right half
+            } else {
+                right = mid - 1; // Search in the left half
+            }
+        }
+        return -1; // Target not found
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50};
+        int target = 30;
+
+        int result = binarySearch(numbers, target);
+
+        if (result != -1) {
+            System.out.println("Element found at index: " + result);
+        } else {
+            System.out.println("Element not found in the array.");
+        }
+    }
+}
+
+
+
+#SLL
+
+import java.util.Scanner;
+
+/* 1. Node Class */
+class Node {
+    int data;
+    Node next;
+
+    // Constructor
+    public Node(int d) {
+        data = d;
+        next = null;
+    }
+} // End of Node Class
+
+/* 2. List Class */
+class List {
+    Node head;
+    Node tail;
+
+    // Constructor
+    public List() {
+        head = null;
+        tail = null;
+    }
+
+    /* Return Size of the List */
+    public int getSize() {
+        Node tmp = head;
+        int size = 0;
+        while (tmp != null) {
+            tmp = tmp.next;
+            size++;
+        }
+        return size;
+    }
+
+    /* Insert Node at the end of the list */
+    public void insertEnd(int val) {
+        Node x = new Node(val);
+        if (head == null) { // Head is empty (empty list)
+            head = x;
+            tail = x;
+        } else {
+            tail.next = x;
+            tail = x;
+        }
+    } // End of insertEnd()
+
+    /* Display the list */
+    public void display() {
+        System.out.print("Singly Linked List Contains: ");
+        Node tmp = head; // Initialize tmp to the first node in the SLL
+        while (tmp != null) {
+            System.out.print(tmp.data + " -> ");
+            tmp = tmp.next; // Shift tmp to the next node
+        }
+        System.out.println("NULL\n");
+    } // End of display()
+
+    /* Search an element in the linked list */
+    public void search(int val) {
+        Node tmp = head;
+        int flag = 0;
+        while (tmp != null) {
+            if (tmp.data == val) {
+                flag = 1;
+                break;
+            }
+            tmp = tmp.next;
+        }
+        if (flag == 1)
+            System.out.println("Element " + val + " found in SLL");
+        else
+            System.out.println("Element " + val + " not found in SLL");
+    } // End of search()
+
+    /* Insert at the Start */
+    public void insertAtStart(int val) {
+        Node x = new Node(val);
+        if (head == null) {
+            head = x;
+            tail = x;
+        } else {
+            x.next = head;
+            head = x;
+        }
+    } // End of insertAtStart()
+
+    /* Delete a Node */
+    public void del(int val) {
+        // 1. Search for the node to be deleted
+        Node tmp = head;
+        Node prev = null;
+        int flag = 0;
+
+        while (tmp != null) {
+            if (tmp.data == val) {
+                flag = 1;
+                break;
+            }
+            prev = tmp;
+            tmp = tmp.next;
+        }
+
+        // 2. Unsuccessful Search - Prompt and return control
+        if (flag == 0) {
+            System.out.println("Unsuccessful Search!");
+            return;
+        }
+
+        // 3. Successful Search
+        // 3a. Single Node Deletion
+        if (tmp == head && tmp == tail) {
+            head = null;
+            tail = null;
+        } else if (tmp == head) { // 3b. Head Node Deletion
+            head = tmp.next;
+        } else if (tmp == tail) { // 3c. Tail Node Deletion
+            tail = prev;
+            tail.next = null;
+        } else { // 3d. Any Other Node in the middle
+            prev.next = tmp.next;
+        }
+        this.display();
+    } // End of del()
+} // End of List Class
+
+/* 3. Interface */
+class SLL {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        // Create an object of List
+        List s = new List();
+        char ch;
+
+        do {
+            System.out.println("*** Singly Linked List ***");
+            System.out.println("1. Insert at the end of the list");
+            System.out.println("2. Size of the List");
+            System.out.println("3. Display the list");
+            System.out.println("4. Search for an element");
+            System.out.println("5. Insert at the Start");
+            System.out.println("6. Delete an Element");
+            System.out.println("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter a value: ");
+                    s.insertEnd(scan.nextInt());
+                    break;
+                case 2:
+                    System.out.println("Size: " + s.getSize() + "\n");
+                    break;
+                case 3:
+                    s.display();
+                    break;
+                case 4:
+                    System.out.print("Enter the element to search in SLL: ");
+                    s.search(scan.nextInt());
+                    break;
+                case 5:
+                    System.out.print("Enter the value to insert: ");
+                    s.insertAtStart(scan.nextInt());
+                    break;
+                case 6:
+                    System.out.print("Enter the value to delete: ");
+                    s.del(scan.nextInt());
+                    break;
+                default:
+                    System.out.println("Incorrect Choice");
+                    break;
+            } // End of Switch
+
+            System.out.println("Do you want to continue? (Type y or n)");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y');
+
+        System.out.println("End of Execution");
+        scan.close();
+    } // End of main()
+} // End of SLL Class
+
+
+
+#CLL
+
+import java.util.Scanner;
+
+/* Node Class */
+class CNode {
+    int data;
+    CNode next;
+
+    // Constructor
+    public CNode(int d) {
+        data = d;
+        next = null;
+    }
+} // End of CNode
+
+/* List Class */
+class CList {
+    CNode head;
+    CNode tail;
+
+    // Constructor
+    public CList() {
+        head = null;
+        tail = null;
+    }
+
+    // Insert at the tail of the list
+    public void InsertTail(int val) {
+        // Make a Node
+        CNode x = new CNode(val);
+
+        // Check for the first Node in the CLL
+        if (head == null) {
+            head = x;
+            tail = x;
+            tail.next = head;
+        } else {
+            tail.next = x;    // Attach x to the tail of the CLL
+            tail = x;         // Update tail
+            tail.next = head; // Link the new tail to the head
+        }
+    } // End of InsertTail()
+
+    // Display the list
+    public void Display() {
+        if (head == null) {
+            System.out.println("Empty CLL!");
+            return;
+        }
+        CNode tmp = head;
+        do {
+            System.out.print(tmp.data + " -> ");
+            tmp = tmp.next;
+        } while (tmp != head);
+        System.out.print("Back to Head\n");
+    } // End of Display
+
+    // Count the nodes in the CLL
+    public void count() {
+        if (head == null) {
+            System.out.println("---Number of Nodes: 0---");
+            return;
+        }
+        CNode tmp = head;
+        int cnt = 0;
+        do {
+            cnt++;
+            tmp = tmp.next;
+        } while (tmp != head);
+        System.out.println("---Number of Nodes: " + cnt + "---");
+    } // End of count()
+
+    // Search for a node in the CLL
+    public void search(int val) {
+        if (head == null) {
+            System.out.println("---Data is not found!---");
+            return;
+        }
+        CNode tmp = head;
+        int flag = 0;
+        do {
+            if (tmp.data == val) {
+                flag = 1;
+                break;
+            }
+            tmp = tmp.next;
+        } while (tmp != head);
+        if (flag == 1) {
+            System.out.println("---Data is found!---");
+        } else {
+            System.out.println("---Data is not found!---");
+        }
+    } // End of search()
+
+    // Delete a Node
+    public void del(int val) {
+        if (head == null) {
+            System.out.println("Empty CLL!");
+            return;
+        }
+
+        // 1. Search for val in the CLL
+        CNode tmp = head;
+        CNode prev = null;
+        int flag = 0;
+
+        do {
+            if (tmp.data == val) {
+                flag = 1;
+                break;
+            }
+            prev = tmp;
+            tmp = tmp.next;
+        } while (tmp != head);
+
+        // 2. Search unsuccessful. RETURN
+        if (flag == 0) {
+            System.out.println("---Data Not Found---");
+            return;
+        }
+
+        // 3. Successful Search
+        if (tmp == head && tmp == tail) { // a. Single Node Deletion
+            head = null;
+            tail = null;
+        } else if (tmp == head) { // b. Head Node Deletion
+            head = head.next;
+            tail.next = head;
+        } else if (tmp == tail) { // c. Tail Node Deletion
+            tail = prev;
+            tail.next = head;
+        } else { // d. Any Other Node Deletion
+            prev.next = tmp.next;
+        }
+
+        Display();
+    } // End of del()
+} // End of CList
+
+/* Interface */
+class CLL {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        // Create an Object of CList
+        CList c = new CList();
+        char ch;
+
+        do {
+            System.out.println("*** CIRCULAR LINKED LIST ***\n");
+            System.out.println("1. Insert at the tail of CLL");
+            System.out.println("2. Display the List");
+            System.out.println("3. Count the nodes in the CLL");
+            System.out.println("4. Search for Node in the CLL");
+            System.out.println("5. Delete a node in the CLL");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a Value: ");
+                    c.InsertTail(scan.nextInt());
+                    break;
+                case 2:
+                    System.out.print("CLL Contains: ");
+                    c.Display();
+                    System.out.println();
+                    break;
+                case 3:
+                    c.count();
+                    break;
+                case 4:
+                    System.out.print("Enter a value: ");
+                    c.search(scan.nextInt());
+                    break;
+                case 5:
+                    System.out.print("Enter a value: ");
+                    c.del(scan.nextInt());
+                    break;
+                default:
+                    System.out.println("Incorrect Choice");
+                    break;
+            } // End of Switch Case
+
+            System.out.print("Do you want to Continue? (y/n): ");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y'); // End of Do-While
+    } // End of main()
+} // End of CLL
+
+
+#DLL
+
+import java.util.Scanner;
+
+/* Node Class */
+class DNode {
+    int data;
+    DNode left;
+    DNode right;
+
+    /* Constructor */
+    DNode(int d) {
+        data = d;
+        left = null;
+        right = null;
+    }
+} // End of DNode Class
+
+/* List Class */
+class DList {
+    DNode head;
+    DNode tail;
+
+    /* Constructor */
+    DList() {
+        head = null;
+        tail = null;
+    }
+
+    /* Insert at tail */
+    public void insert(int val) {
+        // 1. Make a new Node
+        DNode x = new DNode(val);
+
+        // 2. First Node in the DLL
+        if (head == null) {
+            head = x;
+            tail = x;
+        } else { // 3. Attach x to tail
+            tail.right = x;
+            x.left = tail;
+            tail = x;
+        }
+    } // End of insert()
+
+    /* Insert at Head */
+    public void insertAtHead(int val) {
+        DNode x = new DNode(val);
+        if (head == null) {
+            head = x;
+            tail = x;
+        } else {
+            head.left = x;
+            x.right = head;
+            head = x;
+        }
+    } // End of insertAtHead()
+
+    /* Display */
+    public void display() {
+        if (head == null) {
+            System.out.println("---EMPTY DLL---");
+            return;
+        }
+
+        DNode tmp = head;
+
+        System.out.println("FORWARD DIRECTION -");
+        while (tmp != null) {
+            System.out.print(tmp.data + " <-> ");
+            tmp = tmp.right;
+        }
+        System.out.println("End of List");
+
+        System.out.println("REVERSE DIRECTION -");
+        tmp = tail;
+        while (tmp != null) {
+            System.out.print(tmp.data + " <-> ");
+            tmp = tmp.left;
+        }
+        System.out.println("Start of List");
+    } // End of display()
+
+    /* Count */
+    public void count() {
+        DNode tmp = head;
+        int cnt = 0;
+        while (tmp != null) {
+            cnt++;
+            tmp = tmp.right;
+        }
+        System.out.println("Size of the DLL: " + cnt);
+    } // End of count()
+
+    /* Search */
+    public void search(int val) {
+        DNode tmp = head;
+        int flag = 0;
+        while (tmp != null) {
+            if (tmp.data == val) {
+                flag = 1;
+                break;
+            }
+            tmp = tmp.right;
+        }
+        if (flag == 1) {
+            System.out.println("---Data Found---");
+        } else {
+            System.out.println("---Data Not Found---");
+        }
+    } // End of search()
+
+    /* Delete */
+    public void del(int val) {
+        // 1. Search for val
+        DNode tmp = head;
+        DNode prev = null;
+        int flag = 0;
+
+        while (tmp != null) {
+            if (tmp.data == val) {
+                flag = 1;
+                break;
+            }
+            prev = tmp;
+            tmp = tmp.right;
+        }
+
+        // 2. Unsuccessful Search - Return Control
+        if (flag == 0) {
+            System.out.println("---Data Not Found---");
+            return;
+        }
+
+        // 3. Successful Search
+        if (tmp == head && tmp == tail) { // a. Single Node Deletion
+            head = null;
+            tail = null;
+        } else if (tmp == head) { // b. Head Node Deletion
+            head = head.right;
+            head.left = null;
+        } else if (tmp == tail) { // c. Tail Node Deletion
+            tail = prev;
+            tail.right = null;
+        } else { // d. Any other Node Deletion
+            prev.right = tmp.right;
+            tmp.right.left = prev;
+        }
+
+        display();
+    } // End of del()
+} // End of DList class
+
+/* Menu */
+class DLL {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        DList d = new DList();
+        char ch;
+
+        do {
+            System.out.println("\n***DOUBLY LINKED LIST***\n");
+            System.out.println("1. Insert a Node");
+            System.out.println("2. Display the DLL");
+            System.out.println("3. Count the number of nodes in the DLL");
+            System.out.println("4. Search for the Node");
+            System.out.println("5. Delete a Node");
+            System.out.println("6. Insert at Head");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a Value: ");
+                    d.insert(scan.nextInt());
+                    break;
+                case 2:
+                    d.display();
+                    break;
+                case 3:
+                    d.count();
+                    break;
+                case 4:
+                    System.out.print("Enter a value: ");
+                    d.search(scan.nextInt());
+                    System.out.print("\n");
+                    break;
+                case 5:
+                    System.out.print("Enter a Value: ");
+                    d.del(scan.nextInt());
+                    System.out.print("\n");
+                    break;
+                case 6:
+                    System.out.print("Enter a Value: ");
+                    d.insertAtHead(scan.nextInt());
+                    break;
+                default:
+                    System.out.println("Incorrect Choice!!");
+                    break;
+            } // End of Switch-Case
+
+            System.out.print("Do you want to continue? (y/n): ");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y');
+    } // End of main()
+} // End of DLL Class
+
+
+#Stack -Array
+
+import java.util.Scanner;
+
+// 2. Stack Template
+class Stack {
+    int max;
+    int[] sArray;
+    int tos;
+
+    // Constructor
+    public Stack(int size) {
+        max = size;
+        sArray = new int[size];
+        tos = -1;
+    }
+
+    // Push Operation
+    public void push(int val) {
+        if (tos == max - 1) {
+            System.out.println("Stack Overflow!!!");
+        } else {
+            tos++;
+            sArray[tos] = val;
+        }
+    } // End of push()
+
+    // Pop Operation
+    public void pop() {
+        if (tos == -1) {
+            System.out.println("Stack-UnderFlow!");
+        } else {
+            System.out.println("Element removed from tos: " + sArray[tos]);
+            tos--;
+        }
+    } // End of pop()
+
+    // Peek Operation
+    public void peek() {
+        if (tos == -1) {
+            System.out.println("Stack-UnderFlow!");
+        } else {
+            System.out.println("Top of the Stack: " + sArray[tos]);
+        }
+    } // End of peek()
+
+    // Display
+    public void display() {
+        if (tos == -1) {
+            System.out.println("Stack UnderFlow!!!");
+        } else {
+            System.out.println("Stack Contains:");
+            for (int i = tos; i >= 0; i--) {
+                System.out.println(sArray[i]);
+            }
+        }
+    } // End of display()
+} // End of Stack
+
+// 3. Menu
+class AStack {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Stack s = new Stack(4);
+        char ch;
+
+        do {
+            System.out.println("\n***Stack - Array Implementation***\n");
+            System.out.println("1. Push an Element on the stack");
+            System.out.println("2. Pop an Element From the stack");
+            System.out.println("3. Peek Operation");
+            System.out.println("4. Display The Stack\n");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a value: ");
+                    s.push(scan.nextInt());
+                    System.out.print("\n");
+                    break;
+                case 2:
+                    s.pop();
+                    break;
+                case 3:
+                    s.peek();
+                    break;
+                case 4:
+                    s.display();
+                    break;
+                default:
+                    System.out.println("Invalid Option!!!");
+                    break;
+            } // End of Switch-Case
+
+            System.out.print("Do You Want To Continue? (y/n): ");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y');
+    }
+} // End of AStack
+
+
+#Stack-List
+
+import java.util.Scanner;
+
+/* 1. Node Template */
+class SNode {
+    int data;
+    SNode next;
+
+    public SNode(int d) {
+        data = d;
+        next = null;
+    }
+} // End of SNode class
+
+/* 2. Stack - List Based Template */
+class SList {
+    SNode tos; // Top of Stack
+
+    // Constructor
+    public SList() {
+        tos = null;
+    }
+
+    // Push Operation
+    public void push(int val) {
+        // Make a new Node
+        SNode x = new SNode(val);
+        // Add the node to the stack
+        if (tos == null) {
+            tos = x; // First node in the stack
+        } else {
+            x.next = tos;
+            tos = x;
+        }
+    } // End of push()
+
+    // Pop Operation
+    public void pop() {
+        if (tos == null) {
+            System.out.println("Stack Underflow!");
+        } else {
+            System.out.println("Top of the stack removed: " + tos.data);
+            tos = tos.next;
+        }
+    } // End of pop()
+
+    // Peek Operation
+    public void peek() {
+        if (tos == null) {
+            System.out.println("Stack Underflow!");
+        } else {
+            System.out.println("Top of the Stack (peek): " + tos.data);
+        }
+    } // End of peek()
+
+    // Display Stack
+    public void display() {
+        if (tos == null) {
+            System.out.println("Stack Underflow!");
+        } else {
+            SNode temp = tos;
+            System.out.println("Stack Contains:");
+            while (temp != null) {
+                System.out.println(temp.data);
+                temp = temp.next;
+            }
+        }
+    } // End of display()
+} // End of SList class
+
+/* 4. Menu */
+class LStack {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        SList s = new SList();
+        char ch;
+
+        do {
+            System.out.println("\n***Stack - List Implementation***\n");
+            System.out.println("1. Push an Element on the stack");
+            System.out.println("2. Pop an Element From the stack");
+            System.out.println("3. Peek Operation");
+            System.out.println("4. Display The Stack \n");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a value: ");
+                    s.push(scan.nextInt());
+                    System.out.print("\n");
+                    break;
+                case 2:
+                    s.pop();
+                    break;
+                case 3:
+                    s.peek();
+                    break;
+                case 4:
+                    s.display();
+                    break;
+                default:
+                    System.out.println("Invalid Option!!!");
+                    break;
+            } // End of Switch-Case
+
+            System.out.print("Do You Want To Continue? (y/n): ");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y');
+    }
+} // End of LStack
+
+
+
+
+#Queue - Array
+
+import java.util.Scanner;
+
+/* 2. List Template */
+class Queue {
+    int max;
+    int[] qArray;
+    int front;
+    int rear;
+
+    // Constructor
+    public Queue(int size) {
+        max = size;
+        qArray = new int[max];
+        front = -1;
+        rear = -1;
+    }
+
+    // Enqueue Operation
+    public void enqueue(int val) {
+        if (rear == max - 1) { // Check for overflow
+            System.out.println("Queue Overflow!");
+        } else {
+            // First Element
+            if (front == -1) {
+                front++;
+            }
+            rear++;
+            qArray[rear] = val;
+            System.out.println("Enqueued: " + val);
+        }
+    } // End of enqueue()
+
+    // Dequeue Operation
+    public void dequeue() {
+        if (front == -1) { // Check for underflow
+            System.out.println("Queue Underflow!!");
+        } else {
+            System.out.println("Element Removed: " + qArray[front]);
+            if (front == rear) {
+                // Reset queue if it becomes empty
+                front = -1;
+                rear = -1;
+            } else {
+                front++;
+            }
+        }
+    } // End of dequeue()
+
+    // Peek Front Operation
+    public void peekFront() {
+        if (front == -1) {
+            System.out.println("Queue Underflow!!");
+        } else {
+            System.out.println("Element at the Front: " + qArray[front]);
+        }
+    } // End of peekFront()
+
+    // Peek Rear Operation
+    public void peekRear() {
+        if (rear == -1) {
+            System.out.println("Queue Underflow!!");
+        } else {
+            System.out.println("Element at the Rear: " + qArray[rear]);
+        }
+    } // End of peekRear()
+
+    // Display Operation
+    public void display() {
+        if (front == -1) {
+            System.out.println("Queue Underflow!");
+        } else {
+            System.out.println("Queue Contains: ");
+            for (int i = front; i <= rear; i++) {
+                System.out.print(qArray[i] + " ");
+            }
+            System.out.print("\n");
+        }
+    } // End of display()
+} // End of Queue
+
+class AQueue {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        Queue q = new Queue(4); // Initialize a queue with size 4
+        char ch;
+
+        do {
+            System.out.println("\n***Queue - Array Implementation***\n");
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. Peek Front");
+            System.out.println("4. Peek Rear");
+            System.out.println("5. Display\n");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a value to enqueue: ");
+                    q.enqueue(scan.nextInt());
+                    break;
+                case 2:
+                    q.dequeue();
+                    break;
+                case 3:
+                    q.peekFront();
+                    break;
+                case 4:
+                    q.peekRear();
+                    break;
+                case 5:
+                    q.display();
+                    break;
+                default:
+                    System.out.println("Invalid Option!!!");
+                    break;
+            } // End of Switch-Case
+
+            System.out.print("Do You Want To Continue? (y/n): ");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y');
+    }
+} // End of AQueue
+
+
+
+
+#Queue - List
+
+import java.util.Scanner;
+
+/* 1. Node Template */
+class QNode {
+    int data;
+    QNode next;
+
+    public QNode(int d) {
+        data = d;
+        next = null;
+    }
+} // End of QNode class
+
+/* 2. Queue Template */
+class QueList {
+    QNode front;
+    QNode rear;
+
+    public QueList() {
+        front = null;
+        rear = null;
+    }
+
+    // Enqueue Operation
+    public void enqueue(int val) {
+        // Create a new Node
+        QNode x = new QNode(val);
+        // If the queue is empty
+        if (front == null) {
+            front = x;
+            rear = x;
+        } else {
+            rear.next = x;
+            rear = x;
+        }
+        System.out.println("Enqueued: " + val);
+    } // End of enqueue()
+
+    // Dequeue Operation
+    public void dequeue() {
+        if (front == null) {
+            System.out.println("Queue Underflow, Cannot Dequeue");
+        } else {
+            System.out.println("Element Removed: " + front.data);
+            if (front == rear) {
+                // Reset front and rear if the queue becomes empty
+                front = null;
+                rear = null;
+            } else {
+                front = front.next;
+            }
+        }
+    } // End of dequeue()
+
+    // Peek Front Operation
+    public void peekFront() {
+        if (front == null) {
+            System.out.println("Queue Underflow!");
+        } else {
+            System.out.println("Element at the Front: " + front.data);
+        }
+    } // End of peekFront()
+
+    // Peek Rear Operation
+    public void peekRear() {
+        if (rear == null) {
+            System.out.println("Queue Underflow!");
+        } else {
+            System.out.println("Element at the Rear: " + rear.data);
+        }
+    } // End of peekRear()
+
+    // Display Queue
+    public void display() {
+        if (front == null) {
+            System.out.println("Queue Underflow!!");
+        } else {
+            System.out.println("Queue Contains: ");
+            QNode tmp = front;
+            while (tmp != null) {
+                System.out.print(tmp.data + " ");
+                tmp = tmp.next;
+            }
+            System.out.print("\n");
+        }
+    } // End of display()
+} // End of QueList class
+
+/* 3. Menu */
+class LQueue {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        QueList q = new QueList();
+        char ch;
+
+        do {
+            System.out.println("\n***Queue - List Implementation***\n");
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. Peek Front");
+            System.out.println("4. Peek Rear");
+            System.out.println("5. Display\n");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a value: ");
+                    q.enqueue(scan.nextInt());
+                    break;
+                case 2:
+                    q.dequeue();
+                    break;
+                case 3:
+                    q.peekFront();
+                    break;
+                case 4:
+                    q.peekRear();
+                    break;
+                case 5:
+                    q.display();
+                    break;
+                default:
+                    System.out.println("Invalid Option!!!");
+                    break;
+            } // End of Switch-Case
+
+            System.out.print("Do You Want To Continue? (y/n): ");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y');
+    }
+} // End of LQueue
+
+
+
+
+#Circlar Queue
+
+import java.util.Scanner;
+
+/* 2. Queue Template */
+class CirQue {
+    int max;
+    int[] qArray;
+    int front;
+    int rear;
+    int cnt;
+
+    // Constructor
+    public CirQue(int size) {
+        max = size;
+        qArray = new int[max];
+        front = -1;
+        rear = -1;
+        cnt = 0;
+    }
+
+    // Enqueue
+    public void enqueue(int val) {
+        if (cnt == max) {
+            System.out.println("QUEUE OVERFLOW!!");
+        } else {
+            if (front == -1) {
+                front = 0; // Initialize front on first enqueue
+            }
+            rear = (rear + 1) % max;
+            qArray[rear] = val;
+            cnt++;
+            System.out.println("Enqueued: " + val);
+        }
+    } // End of enqueue()
+
+    // Dequeue
+    public void dequeue() {
+        if (cnt == 0) {
+            System.out.println("QUEUE UNDERFLOW!!");
+        } else {
+            System.out.println("Element Removed: " + qArray[front]);
+            front = (front + 1) % max;
+            cnt--;
+            if (cnt == 0) {
+                // Reset front and rear when the queue becomes empty
+                front = -1;
+                rear = -1;
+            }
+        }
+    } // End of dequeue()
+
+    // Display
+    public void display() {
+        if (cnt == 0) {
+            System.out.println("QUEUE UNDERFLOW!!");
+        } else {
+            int j = front;
+            System.out.println("Queue Contains: ");
+            for (int i = 1; i <= cnt; i++) {
+                System.out.print(qArray[j] + " ");
+                j = (j + 1) % max;
+            }
+            System.out.print("\n");
+        }
+    } // End of display()
+
+    // PeekFront
+    public void peekFront() {
+        if (cnt == 0) {
+            System.out.println("QUEUE UNDERFLOW!!");
+        } else {
+            System.out.println("Front of the Queue: " + qArray[front]);
+        }
+    } // End of peekFront()
+
+    // PeekRear
+    public void peekRear() {
+        if (cnt == 0) {
+            System.out.println("QUEUE UNDERFLOW!!");
+        } else {
+            System.out.println("Rear of the Queue: " + qArray[rear]);
+        }
+    } // End of peekRear()
+} // End of CirQue class
+
+/* 3. Menu */
+class CQueue {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        CirQue q = new CirQue(4);
+        char ch;
+
+        do {
+            System.out.println("\n***Circular Queue - Array Implementation***\n");
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. PeekFront");
+            System.out.println("4. PeekRear");
+            System.out.println("5. Display\n");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a Value: ");
+                    q.enqueue(scan.nextInt());
+                    break;
+                case 2:
+                    q.dequeue();
+                    break;
+                case 3:
+                    q.peekFront();
+                    break;
+                case 4:
+                    q.peekRear();
+                    break;
+                case 5:
+                    q.display();
+                    break;
+                default:
+                    System.out.println("Invalid Option!!!");
+                    break;
+            } // End of Switch-Case
+
+            System.out.print("Do You Want To Continue? (y/n): ");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y');
+    }
+} // End of CQueue class
+
+
+#Priority Queue Link-list
+
+import java.util.Scanner;
+
+/* Node Template */
+class PQNode {
+    int data;
+    int priority;
+    PQNode next;
+
+    // Constructor
+    public PQNode(int d, int p) {
+        data = d;
+        priority = p;
+        next = null;
+    }
+} // End of PQNode class
+
+/* Queue Template */
+class PriQue {
+    PQNode front;
+    PQNode rear;
+
+    // Constructor
+    public PriQue() {
+        front = null;
+        rear = null;
+    }
+
+    // Enqueue
+    public void enqueue(int d, int p) {
+        // Make a new Node
+        PQNode x = new PQNode(d, p);
+
+        // First node in the Priority Queue
+        if (front == null) {
+            front = x;
+            rear = x;
+            return;
+        }
+
+        // Ordered Insertion of x
+        PQNode tmp = front;
+        PQNode prev = null;
+        while (tmp != null) {
+            if (x.priority < tmp.priority) // Lower priority number comes first
+                break;
+            prev = tmp;
+            tmp = tmp.next;
+        }
+
+        if (tmp == front) { // Insert at the front
+            x.next = front;
+            front = x;
+        } else if (tmp == null) { // Insert at the rear
+            rear.next = x;
+            rear = x;
+        } else { // Insert in between
+            prev.next = x;
+            x.next = tmp;
+        }
+    } // End of enqueue()
+
+    // Dequeue
+    public void dequeue() {
+        if (front == null) {
+            System.out.println("QUEUE UNDERFLOW, cannot dequeue");
+            return;
+        }
+        System.out.println("Element removed: [" + front.data + ", " + front.priority + "]");
+        if (front == rear) {
+            front = null;
+            rear = null;
+        } else {
+            front = front.next;
+        }
+    } // End of dequeue()
+
+    // PeekFront
+    public void peekFront() {
+        if (front == null) {
+            System.out.println("QUEUE UNDERFLOW!");
+        } else {
+            System.out.println("Element at the Front of Priority Queue: [" + front.data + ", " + front.priority + "]");
+        }
+    } // End of peekFront()
+
+    // PeekRear
+    public void peekRear() {
+        if (front == null) {
+            System.out.println("QUEUE UNDERFLOW!");
+        } else {
+            System.out.println("Element at the Rear of Priority Queue: [" + rear.data + ", " + rear.priority + "]");
+        }
+    } // End of peekRear()
+
+    // Display
+    public void display() {
+        if (front == null) {
+            System.out.println("Priority Queue Underflow");
+        } else {
+            PQNode tmp = front;
+            System.out.println("Queue Contains: ");
+            while (tmp != null) {
+                System.out.print("[" + tmp.data + "," + tmp.priority + "] -> ");
+                tmp = tmp.next;
+            }
+            System.out.print("NULL\n");
+        }
+    } // End of display()
+} // End of PriQue class
+
+/* 3. Menu */
+class PQueue {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        PriQue pq = new PriQue();
+        char ch;
+
+        do {
+            System.out.println("\n***Priority Queue - List Implementation***\n");
+            System.out.println("1. Enqueue");
+            System.out.println("2. Dequeue");
+            System.out.println("3. PeekFront");
+            System.out.println("4. PeekRear");
+            System.out.println("5. Display\n");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a value: ");
+                    int d = scan.nextInt();
+                    System.out.print("Enter its priority: ");
+                    int p = scan.nextInt();
+                    pq.enqueue(d, p);
+                    System.out.print("\n");
+                    break;
+                case 2:
+                    pq.dequeue();
+                    break;
+                case 3:
+                    pq.peekFront();
+                    break;
+                case 4:
+                    pq.peekRear();
+                    break;
+                case 5:
+                    pq.display();
+                    break;
+                default:
+                    System.out.println("Invalid Option!!!");
+                    break;
+            } // End of Switch-Case
+
+            System.out.print("Do You Want To Continue? (y/n): ");
+            ch = scan.next().charAt(0);
+        } while (ch == 'y' || ch == 'Y');
+    }
+} // End of PQueue class
+
+
+
+
+# Double Ended Queue
+
+import java.util.Scanner;
+
+/* 1. Node Template */
+class DQNode {
+    int data;
+    DQNode left;
+    DQNode right;
+
+    public DQNode(int val) {
+        data = val;
+        right = null;
+        left = null;
+    }
+} // End of DQNode class
+
+/* 2. Queue Template */
+class DQue {
+    DQNode front;
+    DQNode rear;
+
+    public DQue() {
+        front = null;
+        rear = null;
+    }
+
+    // Enqueue Front
+    public void enqueueFront(int val) {
+        DQNode x = new DQNode(val);
+        // First Node in the Structure
+        if (front == null) {
+            front = x;
+            rear = x;
+        } else {
+            x.right = front;
+            front.left = x;
+            front = x;
+        }
+    } // End of enqueueFront()
+
+    // Enqueue Rear
+    public void enqueueRear(int val) {
+        DQNode x = new DQNode(val);
+        // First Node in the Structure
+        if (rear == null) {
+            front = x;
+            rear = x;
+        } else {
+            x.left = rear;
+            rear.right = x;
+            rear = x;
+        }
+    } // End of enqueueRear()
+
+    // Dequeue Front
+    public void dequeueFront() {
+        if (front == null) {
+            System.out.println("Queue UnderFlow!!");
+        } else {
+            System.out.println("Element Removed From Front : " + front.data);
+            if (front == rear) {
+                front = null;
+                rear = null;
+            } else {
+                front = front.right;
+                front.left = null;
+            }
+        }
+    } // End of dequeueFront()
+
+    // Dequeue Rear
+    public void dequeueRear() {
+        if (rear == null) {
+            System.out.println("Queue UnderFlow!!");
+        } else {
+            System.out.println("Element Removed From Rear : " + rear.data);
+            if (front == rear) {
+                front = null;
+                rear = null;
+            } else {
+                rear = rear.left;
+                rear.right = null;
+            }
+        }
+    } // End of dequeueRear()
+
+    // PeekFront
+    public void peekFront() {
+        if (front == null) {
+            System.out.println("Queue UnderFlow!!");
+        } else {
+            System.out.println("Element at the Front of Queue : " + front.data);
+        }
+    } // End of peekFront()
+
+    // PeekRear
+    public void peekRear() {
+        if (rear == null) {
+            System.out.println("Queue UnderFlow!!");
+        } else {
+            System.out.println("Element at the Rear of Queue : " + rear.data);
+        }
+    } // End of peekRear()
+
+    // Display
+    public void display() {
+        if (front == null) {
+            System.out.println("Queue UnderFlow!!");
+        } else {
+            DQNode tmp = front;
+            System.out.println("\nThe Queue Contains : ");
+            System.out.print("| ");
+            while (tmp != null) {
+                System.out.print(tmp.data + " | ");
+                tmp = tmp.right;
+            }
+            System.out.print("\n");
+        }
+    } // End of display()
+} // End of DQue class
+
+/* 3. Menu */
+class DQueue {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        DQue d = new DQue();
+        char ch;
+        do {
+            System.out.println("*** Double-Ended Queue ***");
+            System.out.println("1. Enqueue Front");
+            System.out.println("2. Enqueue Rear");
+            System.out.println("3. Dequeue Front");
+            System.out.println("4. Dequeue Rear");
+            System.out.println("5. PeekFront");
+            System.out.println("6. PeekRear");
+            System.out.println("7. Display");
+            System.out.print("Enter your choice: ");
+            int choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter a value: ");
+                    d.enqueueFront(scan.nextInt());
+                    break;
+                case 2:
+                    System.out.print("Enter a value: ");
+                    d.enqueueRear(scan.nextInt());
+                    break;
+                case 3:
+                    d.dequeueFront();
+                    break;
+                case 4:
+                    d.dequeueRear();
+                    break;
+                case 5:
+                    d.peekFront();
+                    break;
+                case 6:
+                    d.peekRear();
+                    break;
+                case 7:
+                    d.display();
+                    break;
+                default:
+                    System.out.println("Invalid Choice!");
+                    break;
+            } // End of Switch-Case
+            System.out.print("Do you want to continue? (y/n): ");
+            ch = scan.next().charAt(0);
+            System.out.print("\n");
+        } while (ch == 'Y' || ch == 'y');
+    }
+} // End of DQueue class
+
+
+
+#Paranthesis Balance-Stack
+
+public class ParBal {
+    // Method to check if the parenthesis are balanced
+    public static boolean isBalanced(String ex) {
+        // Create a stack and initialize the top of stack (tos)
+        char[] stack = new char[ex.length()];
+        int tos = -1;
+
+        for (int i = 0; i < ex.length(); i++) {
+            char ch = ex.charAt(i);
+
+            // Opening Parenthesis - Push to Stack
+            if (ch == '(') {
+                stack[++tos] = ch;
+            }
+            // Closing Parenthesis - Check for Match
+            else if (ch == ')') {
+                if (tos == -1) {
+                    return false; // Unmatched closing parenthesis
+                }
+                tos--; // Pop the stack
+            }
+        }
+
+        // If stack is empty, parenthesis are balanced
+        return tos == -1;
+    } // End of isBalanced()
+
+    public static void main(String[] args) {
+        String expr = "((a+b)*(c-d))";
+        System.out.println("Expression: " + expr);
+        if (isBalanced(expr)) {
+            System.out.println("The parenthesis are Balanced.");
+        } else {
+            System.out.println("The parenthesis are not Balanced.");
+        }
+    }
+} // End of ParBal class
+
+
+#Postfix expration
+
+public class PostEval {
+    // Method to evaluate a postfix expression
+    public static int Calc(String ex) {
+        // Create a stack and initialize the top of stack (tos)
+        int[] stack = new int[ex.length()];
+        int tos = -1;
+
+        for (int i = 0; i < ex.length(); i++) {
+            char ch = ex.charAt(i);
+
+            // If the character is a digit, push it onto the stack
+            if (Character.isDigit(ch)) {
+                stack[++tos] = ch - '0'; // Convert char to integer
+            }
+            // If the character is an operator, pop two operands and evaluate
+            else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
+                int op2 = stack[tos--]; // Pop the second operand
+                int op1 = stack[tos--]; // Pop the first operand
+                int result = 0;
+
+                // Perform the operation based on the operator
+                switch (ch) {
+                    case '+':
+                        result = op1 + op2;
+                        break;
+                    case '-':
+                        result = op1 - op2;
+                        break;
+                    case '*':
+                        result = op1 * op2;
+                        break;
+                    case '/':
+                        result = op1 / op2;
+                        break;
+                }
+
+                // Push the result back onto the stack
+                stack[++tos] = result;
+            }
+        }
+
+        // The final result will be on top of the stack
+        return stack[tos];
+    } // End of Calc()
+
+    public static void main(String[] args) {
+        String expr = "23*5+62/-";
+        int result = Calc(expr);
+        System.out.println("Postfix Expression: " + expr);
+        System.out.println("Result of postfix evaluation: " + result);
+    }
+} // End of PostEval class
+
+
+#infix to postfix 
+
+import java.util.Scanner;
+
+public class InToPost {
+
+    // Method to check if a character is an operator
+    static boolean isOperand(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
+    }
+
+    // Method to determine precedence of operators
+    static int precedence(char operator) {
+        switch (operator) {
+            case '+':
+            case '-':
+                return 1;
+            case '*':
+            case '/':
+                return 2;
+            default:
+                return -1; // Invalid operator or no precedence
+        }
+    }
+
+    // Method to convert infix to postfix expression
+    static String infixToPostfix(String infix) {
+        char[] stack = new char[infix.length()]; // Stack to store operators
+        int tos = -1; // Top of stack initialized to -1
+        StringBuilder postfix = new StringBuilder(); // Resultant postfix expression
+
+        for (int i = 0; i < infix.length(); i++) {
+            char ch = infix.charAt(i);
+
+            if (Character.isLetterOrDigit(ch)) {
+                // Operand - add it directly to postfix expression
+                postfix.append(ch);
+            } else if (ch == '(') {
+                // Open parenthesis - push onto stack
+                tos++;
+                stack[tos] = ch;
+            } else if (ch == ')') {
+                // Close parenthesis - pop and append until '(' is found
+                while (tos != -1 && stack[tos] != '(') {
+                    postfix.append(stack[tos--]);
+                }
+                tos--; // Pop the '('
+            } else if (isOperand(ch)) {
+                // Operator - pop operators from stack with higher or equal precedence
+                while (tos >= 0 && precedence(ch) <= precedence(stack[tos])) {
+                    postfix.append(stack[tos--]);
+                }
+                stack[++tos] = ch; // Push the current operator
+            }
+        }
+
+        // Pop remaining operators from the stack
+        while (tos >= 0) {
+            postfix.append(stack[tos--]);
+        }
+
+        return postfix.toString(); // Return the final postfix expression
+    }
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Enter an infix expression: ");
+        String infix = scan.next(); // Input infix expression
+
+        String result = infixToPostfix(infix); // Convert to postfix
+        System.out.println("Infix Expression: " + infix);
+        System.out.println("Postfix Expression: " + result);
+
+        scan.close(); // Close scanner
+    }
+}
+
+
+#Hashing(Modulo div) linear probe
+
+class HashTable {
+    private Integer[] table; // Hash table array
+    private int size; // Current number of elements in the table
+    private int capacity; // Maximum capacity of the hash table
+
+    // Constructor
+    public HashTable(int capacity) {
+        this.capacity = capacity;
+        this.size = 0;
+        this.table = new Integer[capacity];
+    }
+
+    // Hash Function - Modulo Division
+    private int hash(int key) {
+        return key % capacity;
+    }
+
+    // Insert a key in the hash table
+    public void insert(int key) {
+        if (size >= capacity) {
+            System.out.println("Hash Table is Full! Cannot insert - " + key);
+            return;
+        }
+
+        int index = hash(key);
+
+        // Handle collision using linear probing
+        while (table[index] != null) {
+            index = (index + 1) % capacity; // Linear probing
+        }
+
+        table[index] = key;
+        size++;
+    }
+
+    // Display the hash table
+    public void display() {
+        for (int i = 0; i < capacity; i++) {
+            if (table[i] != null) {
+                System.out.println("Index " + i + " : " + table[i]);
+            } else {
+                System.out.println("Index " + i + " : NULL");
+            }
+        }
+    }
+
+    // Main method to test the HashTable class
+    public static void main(String[] args) {
+        HashTable h = new HashTable(10); // Create a hash table of capacity 10
+
+        // Sample Keys
+        int[] keys = {12, 13, 41, 87, 20, 89, 33, 76, 90, 100, 131};
+
+        for (int key : keys) {
+            h.insert(key);
+        }
+
+        h.display(); // Display the hash table
+    }
+}
+
+#Hashing (Digit Extraction) Linear prob
+
+class HashTable1 {
+    private Integer[] table; // Array representing the hash table
+    private int size; // Current size of the hash table
+    private int capacity; // Maximum capacity of the hash table
+
+    // Constructor
+    public HashTable1(int capacity) {
+        this.capacity = capacity;
+        this.size = 0;
+        this.table = new Integer[capacity];
+    }
+
+    // Hash Function - Digit Extraction (last digit of the key)
+    private int hash(int key) {
+        return key % 10;
+    }
+
+    // Insert a key into the hash table
+    public void insert(int key) {
+        if (size >= capacity) {
+            System.out.println("Hash Table is Full! Cannot insert - " + key);
+            return;
+        }
+
+        int index = hash(key);
+
+        // Handle collisions using linear probing
+        while (table[index] != null) {
+            index = (index + 1) % capacity; // Linear probing
+        }
+
+        table[index] = key;
+        size++;
+    }
+
+    // Display the contents of the hash table
+    public void display() {
+        for (int i = 0; i < capacity; i++) {
+            if (table[i] != null) {
+                System.out.println("Index " + i + " : " + table[i]);
+            } else {
+                System.out.println("Index " + i + " : NULL");
+            }
+        }
+    }
+
+    // Main method to test the hash table
+    public static void main(String[] args) {
+        HashTable1 h = new HashTable1(10); // Create a hash table with capacity 10
+
+        // Sample keys to insert into the hash table
+        int[] keys = {112, 203, 461, 892, 89, 20, 505, 36, 88, 47, 303};
+
+        for (int key : keys) {
+            h.insert(key); // Insert each key
+        }
+
+        h.display(); // Display the final hash table
+    }
+}
+
+
+# Shell sort
+
+import java.util.Scanner;
+
+public class ShellSort {
+    // Sort
+    public static void SSort(int[] arr) {
+        int n = arr.length;
+
+        // Start with increment sequence
+        for (int gap = n / 2; gap > 0; gap = gap / 2) {
+            // Access elements at gap distance
+            for (int i = gap; i < n; i++) {
+                // Save the current element
+                int temp = arr[i];
+                int j;
+
+                // Shift elements
+                for (j = i; j >= gap && arr[j - gap] > temp; j = j - gap) {
+                    arr[j] = arr[j - gap];
+                }
+
+                // Put temp in its correct position
+                arr[j] = temp;
+            }
+        }
+    } // End of SSort()
+
+    // Display the array
+    public static void display(int[] arr) {
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+    } // End of display()
+
+    // Main method
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int[] arr;
+        int n;
+
+        System.out.print("Enter the size of the array: ");
+        n = scan.nextInt();
+
+        arr = new int[n];
+        System.out.println("Enter the values of the array (n = " + n + "): ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scan.nextInt();
+        }
+
+        System.out.println("Original Array: ");
+        display(arr);
+
+        SSort(arr);
+
+        System.out.println("Sorted Array: ");
+        display(arr);
+    }
+} // End of ShellSort class
+
+
+
+#Graph (adjacent matrix)
+
+import java.util.Scanner;
+
+public class AdjMat {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+
+        // Input number of vertices
+        System.out.println("Enter the number of Vertices: ");
+        int v = scan.nextInt();
+
+        // Initialize adjacency matrix
+        int[][] mat = new int[v][v];
+
+        // Input number of edges
+        System.out.println("Enter the number of edges: ");
+        int e = scan.nextInt();
+
+        // Input Edges
+        System.out.println("Enter the Edges (Source and Destination): ");
+        for (int i = 1; i <= e; i++) {
+            int source = scan.nextInt();
+            int destination = scan.nextInt();
+
+            // Mark the edges in the adjacency matrix
+            mat[source][destination] = 1;
+            mat[destination][source] = 1; // For undirected graph
+        }
+
+        // Display the adjacency matrix
+        System.out.println("Adjacency Matrix: ");
+        for (int i = 0; i < v; i++) {
+            for (int j = 0; j < v; j++) {
+                System.out.print(mat[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+} // End of AdjMat class
+
+
+
+# Depth First Traversal
+
+public class DFT {
+    private int[][] adj;       // Adjacency matrix for graph
+    private boolean[] visited; // Track visited nodes
+    private int[] stack;       // Stack for traversal
+    private int tos;           // Top of stack pointer
+
+    // Constructor to initialize the graph with number of vertices
+    public DFT(int v) {
+        adj = new int[v][v];      // Initialize the adjacency matrix
+        visited = new boolean[v]; // Initialize visited array
+        stack = new int[v];       // Initialize stack
+        tos = -1;                 // Initialize stack top pointer
+    }
+
+    // Add edge to the graph (undirected)
+    public void addEdge(int src, int dest) {
+        adj[src][dest] = 1;   // Add edge from src to dest
+        adj[dest][src] = 1;   // Since undirected, also add edge from dest to src
+    }
+
+    // Perform Depth-First Traversal starting from node x
+    public void performDFT(int x) {
+        push(x); // Push the starting node onto the stack
+        System.out.print("DFT Traversal: ");
+        while (tos != -1) { // While the stack is not empty
+            int curr = pop(); // Pop the top element (current node)
+            if (!visited[curr]) { // If the node is not visited
+                visited[curr] = true; // Mark it as visited
+                System.out.print(curr + " "); // Print the current node
+                // Push all unvisited neighbors of the current node onto the stack
+                for (int i = 0; i < adj.length; i++) {
+                    if (adj[curr][i] == 1 && !visited[i]) {
+                        push(i);
+                    }
+                }
+            }
+        }
+    }
+
+    // Push a node onto the stack
+    private void push(int node) {
+        tos++;               // Increment stack top pointer
+        stack[tos] = node;   // Push the node onto the stack
+    }
+
+    // Pop a node from the stack
+    private int pop() {
+        return stack[tos--]; // Return the node and decrement the stack top pointer
+    }
+
+    // Main method for testing the graph and DFT
+    public static void main(String[] args) {
+        DFT g = new DFT(5); // Create a graph with 5 vertices
+
+        // Add edges to the graph
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 4);
+        g.addEdge(2, 1);
+        g.addEdge(2, 3);
+        g.addEdge(3, 4);
+
+        // Perform Depth-First Traversal starting from node 0
+        g.performDFT(0);
+    }
+}
+
+#Binary Search Tree(BST)
+
+/* Node Template */
+class BSTNode {
+    int data;
+    BSTNode left;
+    BSTNode right;
+
+    // Constructor
+    public BSTNode(int d) {
+        data = d;
+        left = null;
+        right = null;
+    }
+}
+
+/* Tree Template */
+class BinarySearchTree {
+    BSTNode root;
+    int cnt;
+
+    // Constructor
+    public BinarySearchTree() {
+        root = null;
+        cnt = 0;
+    }
+
+    // Insert
+    void Insert(int val) {
+        // Make a new node
+        BSTNode t = new BSTNode(val);
+        
+        // First node in the tree
+        if (root == null) {
+            root = t;
+            cnt++;
+            return;
+        }
+
+        // Insert in order
+        BSTNode parent = null;
+        BSTNode tmp = root;
+        while (tmp != null) {
+            parent = tmp;
+            if (t.data > tmp.data) {
+                tmp = tmp.right;
+            } else if (t.data < tmp.data) {
+                tmp = tmp.left;
+            } else {
+                System.out.println("Duplicate value cannot be inserted!");
+                return;
+            }
+        }
+
+        // Insert node t
+        if (t.data < parent.data) {
+            parent.left = t;
+        } else {
+            parent.right = t;
+        }
+        cnt++;
+    }
+
+    // Display
+    void Display() {
+        System.out.print("Preorder traversal: ");
+        Preorder(root);
+        System.out.println();
+        System.out.print("Inorder traversal: ");
+        Inorder(root);
+        System.out.println();
+        System.out.print("Postorder traversal: ");
+        Postorder(root);
+        System.out.println();
+    }
+
+    // Preorder
+    void Preorder(BSTNode r) {
+        if (r != null) {
+            System.out.print(r.data + " ");
+            Preorder(r.left);
+            Preorder(r.right);
+        }
+    }
+
+    // Inorder
+    void Inorder(BSTNode r) {
+        if (r != null) {
+            Inorder(r.left);
+            System.out.print(r.data + " ");
+            Inorder(r.right);
+        }
+    }
+
+    // Postorder
+    void Postorder(BSTNode r) {
+        if (r != null) {
+            Postorder(r.left);
+            Postorder(r.right);
+            System.out.print(r.data + " ");
+        }
+    }
+
+    // Count
+    void Count() {
+        System.out.println("Number of nodes in the tree: " + cnt);
+    }
+
+    // FindMax
+    void FindMax() {
+        if (root == null) {
+            System.out.println("Empty Tree");
+            return;
+        }
+        BSTNode tmp = root;
+        while (tmp.right != null) {
+            tmp = tmp.right;
+        }
+        System.out.println("Maximum value: " + tmp.data);
+    }
+
+    // FindMin
+    void FindMin() {
+        if (root == null) {
+            System.out.println("Empty Tree");
+            return;
+        }
+        BSTNode tmp = root;
+        while (tmp.left != null) {
+            tmp = tmp.left;
+        }
+        System.out.println("Minimum value: " + tmp.data);
+    }
+
+    // Search
+    void Search(int val) {
+        if (root == null) {
+            System.out.println("Empty Tree");
+            return;
+        }
+        BSTNode tmp = root;
+        while (tmp != null) {
+            if (val < tmp.data) {
+                tmp = tmp.left;
+            } else if (val > tmp.data) {
+                tmp = tmp.right;
+            } else {
+                System.out.println(val + " Value is Found");
+                return;
+            }
+        }
+        System.out.println(val + " Value is Not Found");
+    }
+}
+
+/* Menu */
+public class BST {
+    public static void main(String[] args) {
+        BinarySearchTree b = new BinarySearchTree();
+        b.Insert(50);
+        b.Insert(80);
+        b.Insert(60);
+        b.Insert(20);
+        b.Insert(22);
+        b.Insert(100);
+        b.Insert(15);
+        b.Insert(55);
+        b.Insert(70);
+        b.Insert(65);
+        b.Insert(72);
+        b.Insert(72); // Duplicate entry will be rejected
+        b.Display();
+        b.Count();
+        b.FindMax();
+        b.FindMin();
+        b.Search(21);
+        b.Search(22);
+    }
+}
